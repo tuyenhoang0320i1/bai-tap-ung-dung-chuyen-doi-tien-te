@@ -16,33 +16,34 @@
 </style>
 <h1 style="color: blue">Program Chuyển đổi tiền tệ USD, VNĐ, Euro</h1>
 <form action=""method="post">
-    <p>Amount
-    <input id="amount1" type="text" name="amount">
+    <span>Amount</span>
+    <input id="amount1" oninput="convert()" type="text" name="amount">
     From Currency
     <select id="from">
-        <option value="23000" >VietNam</option>
-        <option value="0.85" >Euro</option>
-        <option value="1">USD</option>
+            <option name="$" value="1">USD</option>
+            <option name="EUR" value="0.85">Euro</option>
+            <option name="VND" value="23000">VietNam</option>
     </select>
-    To Currency
+    <span>To Currency</span>
         <select id="to">
-            <option value="1">USD</option>
-            <option value="0.85">Euro</option>
-            <option value="23000">VietNam</option>
-        </select>
-        <button  type="button" onclick="tinh();">Convert</button>
-<script>
-function tinh(){
-    let am = document.getElementById("amount1").value;
-    let fr = document.getElementById("from").value;
-    let tu = document.getElementById("to").value;
-    let result=am*tu/fr
-    document.getElementById("display").innerHTML=result;
-}
+            <option name="$" value="1">USD</option>
+            <option name="EUR" value="0.85">Euro</option>
+            <option name="VND" value="23000">VietNam</option>
+    </select>
+    <button  type="button" onclick="convert();">Convert</button>
+    <script>
+        function convert(){
+            let amount = document.getElementById("amount1");
+            let from = +document.getElementById("from").value;
+            let to = +document.getElementById("to").value;
+            let result = amount.value*to/from;
+            let selectTo = document.getElementById("to");
+            document.getElementById("display").innerHTML= result +" "+ selectTo.options[selectTo.selectedIndex].getAttribute("name");
+        }
 
-</script>
+    </script>
 
 </form>
-<p style="color: blue">Result = <span id="display"> </span></p>
+<p style="color: blue">Result = <span id="display"> </span> </p>
 </body>
 </html>
